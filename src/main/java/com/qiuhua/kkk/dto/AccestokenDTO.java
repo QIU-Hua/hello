@@ -2,10 +2,10 @@ package com.qiuhua.kkk.dto;
 
 public class AccestokenDTO {
     private String client_id;
-    private String redirect_uri;
-    private String scode;
-    private String state;
-
+    private  String redirect_uri;
+    private String code;
+    private String client_secret;
+    private  String state;
 
     public String getClient_id() {
         return client_id;
@@ -23,12 +23,20 @@ public class AccestokenDTO {
         this.redirect_uri = redirect_uri;
     }
 
-    public String getScode() {
-        return scode;
+    public String getCode() {
+        return code;
     }
 
-    public void setScode(String code) {
-        this.scode = code;
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getClient_secret() {
+        return client_secret;
+    }
+
+    public void setClient_secret(String client_secret) {
+        this.client_secret = client_secret;
     }
 
     public String getState() {
@@ -37,5 +45,16 @@ public class AccestokenDTO {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "AccestokenDTO{" +
+                "client_id='" + client_id + '\'' +
+                ", redirect_uri='" + redirect_uri + '\'' +
+                ", scode='" + code + '\'' +
+                ", client_secret='" + client_secret + '\'' +
+                ", state='" + state + '\'' +
+                '}';
     }
 }

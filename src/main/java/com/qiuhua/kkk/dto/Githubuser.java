@@ -2,7 +2,7 @@ package com.qiuhua.kkk.dto;
 
 public class Githubuser {
     private String name ;
-    private long id  ;
+    private Long id  ;
     private String bio;
 
     public String getName() {
@@ -17,7 +17,7 @@ public class Githubuser {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -27,5 +27,14 @@ public class Githubuser {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    @Override
+    public String toString() {
+        return "Githubuser{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", bio='" + bio + '\'' +
+                '}';
     }
 }
