@@ -49,7 +49,7 @@ public class AuthorizeControl {
 
 
 
-        if(githubuser!=null){
+        if(githubuser!=null && (Long)(githubuser.getId())!=null){
             User user = new User();
             String token = UUID.randomUUID().toString();
             user.setToken(token);
@@ -58,6 +58,7 @@ public class AuthorizeControl {
             user.setAccountID(String.valueOf(githubuser.getId()));
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtModified());
+
             usermapper.insert(user);
             response.addCookie(new Cookie("token",token));
             //登录成功，写session和cooking

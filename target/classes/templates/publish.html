@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" http-equiv="Content-Type">
+    <title>the first</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="css/kkk.css"/>
+    <script src="js/bootstrap.min.js" type="application/javascript"></script>
+</head>
+<body>
+<div th:insert="~{nagivation :: nav}"></div>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" >
+            <h2><span class="glyphicon glyphicon-search" aria-hidden="true"></span>发起</h2>
+            <hr>
+            <form action="/publish" method="post">
+                <div class="form-group">
+                    <label for="title">问题标题</label>
+                    <input type="text" class="form-control" id="title" name="title" th:text="${title}" placeholder="问题标题...">
+                </div>
+                <div class="form-group">
+                    <label for="description">问题补充</label>
+                    <textarea id="description" name="description" class="form-control" th:text="${description}" cols="30"  rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tag">问题标题</label>
+                    <input type="text" class="form-control"  id="tag" name="tag"  th:text="${tag}" placeholder="输入标签，以，隔开">
+                </div>
+                <div class="container-fluid main">
+                    <div class="row">
+                        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <div class="alert alert-danger col-lg-9 col-md-12 col-sm-12 col-xs-12" role="alert" th:text="${error}" th:if="${error!= null}">
+                        </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                            <button type="submit" class="btn btn-success btn-publish">发布</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>这里是一段话</h3>
+            .肯定就分了就分了开始JFK放假啊龙卷风
+            .士大夫精神疗法拉萨解放拉萨解放拉萨解放
+
+            手动发送旅客发生口角附近开了
+            都发生了附加赛u发士大夫
+            森林的砍伐可是法律框架堪萨斯放大来看
+            是芬兰空军快速反击的发生
+            肯定是芬兰空军十分舒服多了
+        </div>
+    </div>
+</div>
+</body>
+</html>

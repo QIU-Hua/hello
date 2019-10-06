@@ -35,7 +35,7 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.199</version>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -55,10 +55,11 @@
          </dependency>
 
         <dependency>
-        　　<groupId>org.springframework.boot</groupId>
-        　　<artifactId>spring-boot-starter-test</artifactId>
-        　　<scope>test</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
+
 
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -67,10 +68,24 @@
         </dependency>
 
         <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-             <artifactId>mybatis-spring-boot-starter</artifactId>
-             <version>2.0.1</version>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.0.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+            <scope>provided</scope>
+        </dependency>
+
 
     </dependencies>
 
@@ -80,7 +95,24 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+            <plugin>
+              <groupId>org.flywaydb</groupId>
+                 <artifactId>flyway-maven-plugin</artifactId>
+                   <version>6.0.4</version>
+                       <configuration>
+                                <url>jdbc:h2:~/commit</url>
+                                <user>root</user>
+                                <password>118525</password>
+                       </configuration>
+                   <dependencies>
+                 <dependency>
+                     <groupId>com.h2database</groupId>
+                     <artifactId>h2</artifactId>
+                     <version>1.4.199</version>
+                 </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
-
 </project>
