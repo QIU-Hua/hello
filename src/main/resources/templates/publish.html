@@ -3,37 +3,85 @@
 <head>
     <meta charset="UTF-8" http-equiv="Content-Type">
     <title>the first</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" href="css/kkk.css"/>
-    <script src="js/bootstrap.min.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/css/kkk.css"/>
+    <link rel="stylesheet" href="/css/editormd.css"/>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/moment.js" type="application/javascript"></script>
+    <script src="/js/community.js" type="application/javascript"></script>
+    <script src="/js/editormd.min.js" type="application/javascript"></script>
 </head>
 <body>
 <div th:insert="~{nagivation :: nav}"></div>
 <div class="container-fluid main">
     <div class="row">
-        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" >
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
             <h2><span class="glyphicon glyphicon-search" aria-hidden="true"></span>发起</h2>
             <hr>
             <form action="/publish" method="post">
+                <input type="hidden" name="id" th:value="${id}">
                 <div class="form-group">
                     <label for="title">问题标题</label>
-                    <input type="text" class="form-control" id="title" name="title" th:text="${title}" placeholder="问题标题...">
+                    <input type="text" class="form-control" id="title" name="title" th:text="${title}"
+                           placeholder="问题标题...">
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="test-editor">
                     <label for="description">问题补充</label>
-                    <textarea id="description" name="description" class="form-control" th:text="${description}" cols="30"  rows="10"></textarea>
+                    <textarea id="description" name="description" class="form-control" th:text="${description}"
+                              cols="10" rows="30" style="display:none;"></textarea>
                 </div>
+                <!--               markdown库的地址和设定 -->
+                <script type="text/javascript">
+                    $(function () {
+                        var editor = editormd("test-editor", {
+                            width: "100%",
+                            height: 450,
+                            path: "/js/lib/",
+                            watch: false,
+                            dalay: 0,
+                            imageupload: true,
+                            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                            imageUploadURL: "/files/upload",
+                        });
+                    });
+                </script>
+
                 <div class="form-group">
                     <label for="tag">问题标题</label>
-                    <input type="text" class="form-control"  id="tag" name="tag"  th:text="${tag}" placeholder="输入标签，以，隔开">
+                    <input type="text" class="form-control" id="tag" name="tag" th:text="${tag}"
+                           placeholder="输入标签，以，隔开"
+                           onclick="showSelectTag()">
                 </div>
+                <div id="select-tag" class="publish-tab-tag">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" th:each="selectcategory,selectCategoryStat:${tags}"
+                            th:class="${selectCategoryStat.first ?'active':''}">
+                            <a th:href="${'#'+selectcategory.categoryName}" aria-controls="home"
+                               role="tab" data-toggle="tab" th:text="${selectcategory.categoryName}"></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane" th:each="selectcategory:${tags}"
+                             th:id="${selectcategory.categoryName}"
+                             th:class="${selectcategoryStat.first?'active tab-pane':'tab-pane'}">
+                            <span class="label label-info" th:each="selectTag: ${selectcategory.tag}">
+                                <span class="glyphicon glyphicon-tags" onclick="selectTag(this)"
+                                      th:data-tag="${selectTag}" th:text="${' '+selectTag}"></span></span>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="container-fluid main">
                     <div class="row">
                         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-                        <div class="alert alert-danger col-lg-9 col-md-12 col-sm-12 col-xs-12" role="alert" th:text="${error}" th:if="${error!= null}">
+                            <div class="alert alert-danger col-lg-9 col-md-12 col-sm-12 col-xs-12" role="alert"
+                                 th:text="${error}" th:if="${error!= null}">
+                            </div>
                         </div>
-                        </div>
+
 
                         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                             <button type="submit" class="btn btn-success btn-publish">发布</button>
@@ -55,5 +103,6 @@
         </div>
     </div>
 </div>
+<div th:insert="~{last :: last}"></div>
 </body>
 </html>
