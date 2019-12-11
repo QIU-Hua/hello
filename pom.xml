@@ -48,11 +48,11 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
-         <dependency>
-           <groupId>com.squareup.okhttp3</groupId>
-           <artifactId>okhttp</artifactId>
-           <version>3.14.1</version>
-         </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.14.1</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -78,6 +78,11 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
+        <!--jdbc连接-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -91,6 +96,12 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.9</version>
         </dependency>
+        <!--mysql连接依赖-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.18</version>
+        </dependency>
 
 
     </dependencies>
@@ -103,20 +114,20 @@
             </plugin>
 
             <plugin>
-              <groupId>org.flywaydb</groupId>
-                 <artifactId>flyway-maven-plugin</artifactId>
-                   <version>6.0.4</version>
-                       <configuration>
-                                <url>jdbc:h2:~/commit</url>
-                                <user>root</user>
-                                <password>118525</password>
-                       </configuration>
-                   <dependencies>
-                 <dependency>
-                     <groupId>com.h2database</groupId>
-                     <artifactId>h2</artifactId>
-                     <version>1.4.199</version>
-                 </dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>6.0.4</version>
+                <configuration>
+                    <url>jdbc:mysql://127.0.0.1:3306/commit</url>
+                    <user>root</user>
+                    <password>118525</password>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>8.0.18</version>
+                    </dependency>
                 </dependencies>
             </plugin>
             <plugin>

@@ -6,6 +6,7 @@ import com.qiuhua.kkk.dto.AccestokenDTO;
 import com.qiuhua.kkk.dto.Githubuser;
 import com.qiuhua.kkk.model.User;
 import com.qiuhua.kkk.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 @Controller
+@Slf4j
 public class AuthorizeControl {
 
     @Autowired
@@ -60,9 +62,11 @@ public class AuthorizeControl {
             user.setAvatarUrl(githubuser.getAvatar_url());
             userService.createOrUpdate(user);
             response.addCookie(new Cookie("token", token));
+
             //登录成功，写session和cooking
             return "redirect:/";
         } else {
+            log.error("callback github error,{}",githubuser);
             //登录失败
             return "redirect:/";
         }

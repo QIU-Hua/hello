@@ -6,7 +6,6 @@ import com.qiuhua.kkk.dto.ResultDTO;
 import com.qiuhua.kkk.enums.CommentTypeEnum;
 import com.qiuhua.kkk.exception.CustomizeErrorCode;
 import com.qiuhua.kkk.mapper.CommentMapper;
-import com.qiuhua.kkk.mapper.NotificationMapper;
 import com.qiuhua.kkk.model.Comment;
 import com.qiuhua.kkk.model.User;
 import com.qiuhua.kkk.service.CommentService;
@@ -27,10 +26,6 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-
-
-
-    @ResponseBody
     @RequestMapping(value = "/comment",  method= RequestMethod.POST)
     public Object post(
             @RequestBody CommentCreateDTO commentCreatDTO,

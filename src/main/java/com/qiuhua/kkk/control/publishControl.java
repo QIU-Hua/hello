@@ -33,6 +33,7 @@ public class publishControl {
 
         return "publish";
     }
+
     @GetMapping("/publish")
     public String publish( Model model){
         model.addAttribute("tags", TagCache.get());
